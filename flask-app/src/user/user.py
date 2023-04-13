@@ -49,3 +49,21 @@ def get_allTrainer():
         json_data.append(dict(zip(column_headers, row)))
 
     return jsonify(json_data)
+
+
+@user.route('/changePW', methods=['PUT'])
+def change_pw():
+     the_data = request.json
+     current_app.logger.info(the_data)
+     username=the_data['username']
+     userpassword=the_data['newpassword']
+     contact=the_data['contact']
+     userID=the_data['userID']
+     trainerID = the_data['trainerID']
+     query = 'UPDATE Users SET  userpassword = "' + userpassword + '" WHERE userID = "' + userID + '"'
+     current_app.logger.info(query)
+     
+     cursor = db.get_db().cursor()
+     cursor.execute(query)
+     db.get_db().commit()
+     return "sucesses"
