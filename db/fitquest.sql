@@ -73,10 +73,12 @@ create table if not exists Diet (
 	totalfat DECIMAL(8, 2),
 	dietID VARCHAR(10) NOT NULL,
 	userID VARCHAR(10) NOT NULL,
+	username VARCHAR(20) NOT NULL
 	PRIMARY KEY (dietID)
 	CONSTRAINT d_key
 		FOREIGN KEY (userID)
 			REFERENCES Users (userID)
+			on delete cascade
 );
 
 INSERT INTO Diet (totalcarbs, totalprotien, totalfat, dietID, userID, dietname)

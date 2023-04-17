@@ -178,5 +178,3 @@ def get_specefic_equipment():
         cursor.execute(query)
         db.get_db().commit()
         return "sucesses"
-
-
