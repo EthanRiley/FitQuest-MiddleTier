@@ -1,7 +1,7 @@
 
-DROP SCHEMA IF EXISTS `fitquest`;
-CREATE SCHEMA IF NOT EXISTS `fitquest` DEFAULT CHARACTER SET latin1 ;
-USE `fitquest`;
+DROP SCHEMA IF EXISTS `FitQuest`;
+CREATE SCHEMA IF NOT EXISTS `FitQuest` DEFAULT CHARACTER SET latin1 ;
+USE `FitQuest`;
 
 create table if not exists Trainers (
 	trainerID VARCHAR(10) NOT NULL,
@@ -57,6 +57,7 @@ create table if not exists Foods (
 	foodID VARCHAR(10),
 	foodName VARCHAR(20),
 	NumServings DECIMAL(6, 2),
+	unit VARCHAR(10),
 	carbs DECIMAL(6, 2),
 	protien DECIMAL(6, 2),
 	fat DECIMAL(6, 2),
@@ -71,12 +72,12 @@ create table if not exists Diet (
 	totalcarbs DECIMAL(8, 2),
 	totalprotien DECIMAL(8, 2),
 	totalfat DECIMAL(8, 2),
-	dietID VARCHAR(10) NOT NULL ,
-	foodID VARCHAR(10),
-	PRIMARY KEY (dietID),
-	CONSTRAINT diet_key
-        FOREIGN KEY (foodID)
-            REFERENCES Foods (foodID)
+	dietID VARCHAR(10) NOT NULL,
+	userID VARCHAR(10) NOT NULL,
+	PRIMARY KEY (dietID)
+	CONSTRAINT d_key
+		FOREIGN KEY (userID)
+			REFERENCES Users (userID)
 );
 
 INSERT INTO Diet (totalcarbs, totalprotien, totalfat, dietID)
@@ -88,8 +89,7 @@ create table if not exists DietFoods (
 	foodName VARCHAR(20),
 	logdate DATETIME DEFAULT CURRENT_TIMESTAMP(),
 	mealNum VARCHAR(10) NOT NULL ,
-	servings INT,
-	unitsize DECIMAL(6, 2),
+	servings decimal(6, 2),
 	carbs DECIMAL(6, 2),
 	protien DECIMAL(6, 2),
 	fat DECIMAL(6, 2),
@@ -108,6 +108,7 @@ VALUES ('20000', '99090', 'avocado', '0022723', 1, 1000, 0.1, 20,20);
 create table if not exists Weight (
 	userID VARCHAR(10),
 	weight INT,
+	date DATETIME DEFAULT CURRENT_TIMESTAMP(),
 	PRIMARY KEY (weight),
 	CONSTRAINT weight_k FOREIGN KEY (userID) REFERENCES Users (userID)
 );
@@ -224,12 +225,3 @@ create table if not exists UserPrograms (
 
 INSERT INTO UserPrograms (userID, programID)
 VALUES ('700', '007700');
-
-create table if not exists Eat (
-	userID VARCHAR(10) NOT NULL,
-	dietID VARCHAR(10) NOT NULL,
-CONSTRAINT eat_user_key FOREIGN KEY (userID) REFERENCES Users (userID) ON DELETE CASCADE,
-CONSTRAINT eat_diet_key FOREIGN KEY (dietID) REFERENCES Diet (dietID)
-);
-
-INSERT INTO Eat (userID, dietID) VALUES ('700', '99090');
