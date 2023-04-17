@@ -71,16 +71,16 @@ create table if not exists Diet (
 	totalcarbs DECIMAL(8, 2),
 	totalprotien DECIMAL(8, 2),
 	totalfat DECIMAL(8, 2),
-	dietID VARCHAR(10) NOT NULL ,
-	foodID VARCHAR(10),
-	PRIMARY KEY (dietID),
-	CONSTRAINT diet_key
-        FOREIGN KEY (foodID)
-            REFERENCES Foods (foodID)
+	dietID VARCHAR(10) NOT NULL,
+	userID VARCHAR(10) NOT NULL,
+	PRIMARY KEY (dietID)
+	CONSTRAINT d_key
+		FOREIGN KEY (userID)
+			REFERENCES Users (userID)
 );
 
-INSERT INTO Diet (totalcarbs, totalprotien, totalfat, dietID)
-VALUES (100, 2, 3, '99090');
+INSERT INTO Diet (totalcarbs, totalprotien, totalfat, dietID, userID, dietname)
+VALUES (100, 2, 3, '99090', '1234', 'keto');
 
 create table if not exists DietFoods (
 	foodID VARCHAR(10),
@@ -102,8 +102,8 @@ create table if not exists DietFoods (
             REFERENCES Diet (dietID)
 );
 
-INSERT INTO DietFoods (foodID, dietID, foodName, mealNum, servings, unitsize, carbs, protien, fat)
-VALUES ('20000', '99090', 'avocado', '0022723', 1, 1000, 0.1, 20,20);
+INSERT INTO DietFoods (foodID, dietID, foodName, mealNum, servings, carbs, protien, fat)
+VALUES ('20000', '99090', 'avocado', '0022723', 1, 0.1, 20,20);
 
 create table if not exists Weight (
 	userID VARCHAR(10),
