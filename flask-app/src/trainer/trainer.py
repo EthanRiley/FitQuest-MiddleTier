@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response, current_app
 import json
+import random
 from src import db
 
 trainer = Blueprint('trainer', __name__)
@@ -147,7 +148,7 @@ def updateDiet():
      newprotein = the_data['updateProtein']
      dname = the_data['DietPicker']
      query = 'UPDATE Diet set totalcarbs = "' + str(newcarbs) + '", totalfat = "' + str(newfat)
-     query += '", totalprotien = "' + str(newprotein) + '" where dietname = "( SELECT' + dname + '"'
+     query += '", totalprotien = "' + str(newprotein) + '" where dietname = "' + dname + '"'
      current_app.logger.info(query)
      
      cursor = db.get_db().cursor()
@@ -178,3 +179,34 @@ def get_specefic_equipment():
         cursor.execute(query)
         db.get_db().commit()
         return "sucesses"
+
+@trainer.route('/deletediet', methods=['DELETE'])
+def deldiet():
+    the_data = request.json
+    current_app.logger.info(the_data)
+    dietname=the_data['todelete']
+    query = 'Delete from Diet where dietID = "' + newcarbs + '"'
+    current_app.logger.info(query)
+        
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    return "sucesses"
+
+
+
+
+"""
+
+TESTING
+
+
+
+
+
+
+
+
+
+
+"""
