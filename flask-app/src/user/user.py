@@ -12,9 +12,9 @@ def add_new_user():
      userpassword=the_data['userpassword']
      contact=the_data['contact']
      userID=the_data['userID']
-     trainerID=the_data['trainerID']
+     trainerID = the_data['trainerID']
      query = 'insert into Users ( username, userpassword, contact, userID, trainerID) values ("'
-     query +=  username + '", "' +userpassword + '", "' + contact + '", '  + userID+ ', '  + trainerID + ')'
+     query +=  username + '", "' +userpassword + '", "' + contact + '", '  + userID+ ', "'  + trainerID + '")'
      current_app.logger.info(query)
      
      cursor = db.get_db().cursor()
@@ -49,3 +49,4 @@ def get_allTrainer():
         json_data.append(dict(zip(column_headers, row)))
 
     return jsonify(json_data)
+
