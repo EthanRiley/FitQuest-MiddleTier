@@ -105,6 +105,7 @@ VALUES ('20000', '99090', 'avocado', '0022723', 1, 1000, 0.1, 20,20);
 create table if not exists Weight (
 	userID VARCHAR(10),
 	weight INT,
+	date DATETIME DEFAULT CURRENT_TIMESTAMP(),
 	PRIMARY KEY (weight),
 	CONSTRAINT weight_k FOREIGN KEY (userID) REFERENCES Users (userID)
 );

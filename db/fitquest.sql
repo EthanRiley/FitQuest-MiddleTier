@@ -72,11 +72,7 @@ create table if not exists Diet (
 	totalprotien DECIMAL(8, 2),
 	totalfat DECIMAL(8, 2),
 	dietID VARCHAR(10) NOT NULL,
-	foodID VARCHAR(10),
-	PRIMARY KEY (dietID),
-	CONSTRAINT diet_key
-        FOREIGN KEY (foodID)
-            REFERENCES Foods (foodID)
+	PRIMARY KEY (dietID)
 );
 
 INSERT INTO Diet (totalcarbs, totalprotien, totalfat, dietID)
@@ -108,6 +104,7 @@ VALUES ('20000', '99090', 'avocado', '0022723', 1, 1000, 0.1, 20,20);
 create table if not exists Weight (
 	userID VARCHAR(10),
 	weight INT,
+	date DATETIME DEFAULT CURRENT_TIMESTAMP(),
 	PRIMARY KEY (weight),
 	CONSTRAINT weight_k FOREIGN KEY (userID) REFERENCES Users (userID)
 );
