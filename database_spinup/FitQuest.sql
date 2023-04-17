@@ -73,11 +73,7 @@ create table if not exists Diet (
 	totalprotien DECIMAL(8, 2),
 	totalfat DECIMAL(8, 2),
 	dietID VARCHAR(10) NOT NULL ,
-	foodID VARCHAR(10),
-	PRIMARY KEY (dietID),
-	CONSTRAINT diet_key
-        FOREIGN KEY (foodID)
-            REFERENCES Foods (foodID)
+	PRIMARY KEY (dietID)
 );
 
 INSERT INTO Diet (totalcarbs, totalprotien, totalfat, dietID)
