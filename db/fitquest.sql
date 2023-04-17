@@ -72,7 +72,11 @@ create table if not exists Diet (
 	totalprotien DECIMAL(8, 2),
 	totalfat DECIMAL(8, 2),
 	dietID VARCHAR(10) NOT NULL,
+	userID VARCHAR(10) NOT NULL,
 	PRIMARY KEY (dietID)
+	CONSTRAINT d_key
+		FOREIGN KEY (userID)
+			REFERENCES Users (userID)
 );
 
 INSERT INTO Diet (totalcarbs, totalprotien, totalfat, dietID)
@@ -221,12 +225,3 @@ create table if not exists UserPrograms (
 
 INSERT INTO UserPrograms (userID, programID)
 VALUES ('700', '007700');
-
-create table if not exists Eat (
-	userID VARCHAR(10) NOT NULL,
-	dietID VARCHAR(10) NOT NULL,
-CONSTRAINT eat_user_key FOREIGN KEY (userID) REFERENCES Users (userID) ON DELETE CASCADE,
-CONSTRAINT eat_diet_key FOREIGN KEY (dietID) REFERENCES Diet (dietID)
-);
-
-INSERT INTO Eat (userID, dietID) VALUES ('700', '99090');
