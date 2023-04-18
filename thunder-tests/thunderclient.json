@@ -4,11 +4,11 @@
     "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
     "containerId": "",
     "name": "TestGetDiet",
-    "url": "localhost:8001/t/retreiveDiet",
+    "url": "localhost:8001/d/retreiveDiet",
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-04-17T22:28:53.122Z",
-    "modified": "2023-04-17T22:35:23.721Z",
+    "modified": "2023-04-18T18:06:37.351Z",
     "headers": [],
     "params": [],
     "tests": []

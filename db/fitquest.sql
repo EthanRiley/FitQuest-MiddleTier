@@ -1,7 +1,7 @@
 
-DROP SCHEMA IF EXISTS `fitquest`;
-CREATE SCHEMA IF NOT EXISTS `fitquest` DEFAULT CHARACTER SET latin1 ;
-USE `fitquest`;
+DROP SCHEMA IF EXISTS `FitQuest`;
+CREATE SCHEMA IF NOT EXISTS `FitQuest` DEFAULT CHARACTER SET latin1 ;
+USE `FitQuest`;
 
 create table if not exists Trainers (
 	trainerID VARCHAR(10) NOT NULL,
