@@ -3,6 +3,7 @@ import json
 from src import db
 
 diet = Blueprint('diets', __name__)
+
 @diet.route('/retreiveDiet', methods=['GET'])
 def look_at_diets():
     # get a cursor object from the database
@@ -11,6 +12,34 @@ def look_at_diets():
     # use cursor to query the database for a list of products
     cursor.execute(
         '''SELECT dietname AS label, dietID AS value
+            FROM Diet''')
+
+    # grab the column headers from the returned data
+    column_headers = [x[0] for x in cursor.description]
+
+    # create an empty dictionary object to use in 
+    # putting column headers together with data
+    json_data = []
+
+    # fetch all the data from the cursor
+    theData = cursor.fetchall()
+
+    # for each of the rows, zip the data elements together with
+    # the column headers. 
+    for row in theData:
+        json_data.append(dict(zip(column_headers, row)))
+
+    return jsonify(json_data)
+
+@diet.route('/graphDiet', methods=['GET'])
+def getGraphData():
+    # get a cursor object from the database
+    cursor = db.get_db().cursor()
+    """    the_data = request.json
+    current_app.logger.info(the_data)
+    dietname=the_data['dietname']"""
+    # use cursor to query the database for a list of products
+    cursor.execute('''SELECT dietname AS x, totalprotien AS y
             FROM Diet''')
 
     # grab the column headers from the returned data
@@ -100,20 +129,21 @@ def add_to_diet():
      protein=the_data['totalprotein']
      fat=the_data['totalfat']
      dietname=the_data['dietname']
+     userID = the_data['targetUser']
 
      # make a new dietID
      cursor = db.get_db().cursor()
      cursor.execute(
         '''select dietID from Diet''')
-     column_headers = [x[0] for x in cursor.description]
      json_data = []
      theData = cursor.fetchall()
      for row in theData:
         json_data.append(row[0])
      dietID = int(max(json_data)) + 1
 
-     query = 'insert into Diet (totalcarbs, totalprotien, totalfat, dietname, dietID) values ("'
-     query +=  carbs + '", "' + protein + '", "' + fat  + '", "' + dietname + '", "' + str(dietID) + '")'
+     query = 'insert into Diet (totalcarbs, totalprotien, totalfat, dietname, dietID, userID) values ("'
+     query += carbs + '", "' + protein + '", "' + fat  + '", "' + dietname + '", "' + str(dietID) + '", "'
+     query += userID + '")'
      current_app.logger.info(query)
      
      cursor = db.get_db().cursor()
@@ -167,8 +197,8 @@ def deldiet():
     try:
         the_data = request.json
         current_app.logger.info(the_data)
-        dietname=the_data['todelete']
-        query = 'Delete from Diet where dietID = "' + newcarbs + '"'
+        delete=the_data['todelete']
+        query = 'Delete from Diet where dietID = "' + delete + '"'
         current_app.logger.info(query)
             
         cursor = db.get_db().cursor()
