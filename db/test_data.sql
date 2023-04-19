@@ -1,19 +1,19 @@
 USE fitquest;
 
 INSERT INTO Users (userID, username, userpassword, contact, created_at)
-VALUES ('1', 'test_user', 'test_user', '8166666666', '2018-01-01 00:00:00');
+VALUES ('501', 'test_user', 'test_user', '8166666666', '2018-01-01 00:00:00');
 
 INSERT INTO Exercises (exerciseID, target, instructions, type, rating, exerciseName)
-VALUES ('1', 'Chest', 'Lay on bench and lift weights', 'Strength', '5', 'Bench Press');
+VALUES ('11', 'Chest', 'Lay on bench and lift weights', 'Strength', '5', 'Bench Press');
 
 INSERT INTO UserExercises (exerciseID, userID, max, reaction, ratedate)
-VALUES ('1', '1', '250', '1', '2018-01-01 00:00:00');
+VALUES ('11', '501', '250', '1', '2018-01-01 00:00:00');
 
 INSERT INTO Exercises (exerciseID, target, instructions, type, rating, exerciseName)
-VALUES ('2', 'Legs', 'Put the weight on your back and squat', 'Strength', '5', 'Squat');
+VALUES ('12', 'Legs', 'Put the weight on your back and squat', 'Strength', '5', 'Squat');
 
 INSERT INTO UserExercises (exerciseID, userID, max, reaction, ratedate)
-VALUES ('2', '1', '300', '1', '2018-01-01 00:00:00');
+VALUES ('12', '501', '300', '1', '2018-01-01 00:00:00');
 
 
 INSERT INTO Trainers(trainerID, rate, specialty, TrainerName)
@@ -52,11 +52,11 @@ VALUES ('221234', 'Busy', 'SquatRack2');
 
 
 INSERT INTO Staff (employeeID, hourlyRate, Ename, supID)
-VALUES ('99', 16.26, 'Steve', '99');
+VALUES ('5001', 16.26, 'Steve', '12');
 
 
 INSERT INTO WorkOrders (workOrderID, employeeID, machineID)
-VALUES ('1', '99', '221234');
+VALUES ('13', '5001', '221234');
 
 INSERT INTO UserRequests (machineid, userID)
 VALUES ('221234', '700');
@@ -70,7 +70,7 @@ INSERT INTO Exercises (exerciseID, target, instructions, type, rating, exerciseN
 VALUES ('0', 'lats', 'grab the bar, pull up', 'Upper Body', 8.5, 'Pull Up');
 
 INSERT INTO UserExercises (exerciseID, max, reaction, userID)
-VALUES ('0', 1, 1.2, '700');
+VALUES ('0', 1, 'get me my epipen', '700');
 
 
 INSERT INTO ProgramDetails (programID, exerciseID, numDay, pattern)
@@ -82,10 +82,10 @@ VALUES ('700', '007700');
 
 
 INSERT INTO Programs (programID, numDays, programDescription)
-VALUES ('1', '2', '2 day upper lower split');
+VALUES ('11', '2', '2 day upper lower split');
 
 INSERT INTO ProgramDetails (programID, exerciseID, numDay, pattern)
-VALUES ('1', '1', 1, '.8');
+VALUES ('11', '1', 1, '.8');
 
 INSERT INTO UserPrograms (programID, userID)
-VALUES ('1', '1');
+VALUES ('11', '501');
