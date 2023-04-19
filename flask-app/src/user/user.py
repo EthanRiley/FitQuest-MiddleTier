@@ -83,9 +83,20 @@ def get_allTrainer():
 
 @user.route('/max/<string:userID>/<string:exerciseID>', methods=['GET', 'PUT'])
 def get_max(userID, exerciseID):
+    # route for retreiving the existing max from the database
     if request.method == 'GET':
         # get a cursor object from the database
         cursor = db.get_db().cursor()
+
+        # check if user is in the database
+        userID = checkin("userID", "Users", userID)
+        if userID == "Not in Database":
+            return "userID Not in Database"
+        
+        # check if exercise is in the database
+        exerciseID = checkin("exerciseID", "Exercises", exerciseID)
+        if exerciseID == "Not in Database":
+            return "exerciseID Not in Database"
 
         # use cursor to query the database for a list of products
         cursor.execute(
@@ -109,6 +120,8 @@ def get_max(userID, exerciseID):
             json_data.append(dict(zip(column_headers, row)))
 
         return jsonify(json_data)
+    
+    # route for adding a max to the database
     if request.method == 'PUT':
         the_data = request.json
         current_app.logger.info(the_data)
@@ -136,6 +149,9 @@ def get_max(userID, exerciseID):
         new_max = json_data[0]['max']
         if the_data['check1'] and the_data['check2'] and the_data['check3'] and the_data['check4'] and the_data['check5']:
             new_max = int(new_max) + 5
+            increase = "Congrats You are ready to move on"
+        else:
+            increase = 'Keep working, not qiute ready to move up'
         query = f'''UPDATE UserExercises
                     SET max = {str(new_max)}
                     WHERE userID = "{userID}" AND exerciseID = "{exerciseID}"'''
@@ -144,11 +160,15 @@ def get_max(userID, exerciseID):
         cursor = db.get_db().cursor()
         cursor.execute(query)
         db.get_db().commit()
-        return "sucesses"
+        return increase
     
 @user.route('/userPrograms/<string:userID>', methods=['GET'])
 def get_users_program(userID):
     cursor = db.get_db().cursor()
+
+    userID = checkin("userID", "Users", userID)
+    if userID == "Not in Database":
+        return "userID Not in Database"
 
     # use cursor to query the database for a list of products
     cursor.execute(
