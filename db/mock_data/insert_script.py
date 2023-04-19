@@ -12,7 +12,7 @@ def insert_csv(filename, sqlconnection, schema):
     with open(filename, 'r') as csvfile:
         csvreader = csv.reader(csvfile)
 
-        # Get table name and columns
+        # Get table name and columnspip
         table_name = filename.split('.')[0]
         columns = next(csvreader)
         columns_string = ', '.join(columns)
@@ -31,11 +31,11 @@ if __name__ == "__main__":
         host='localhost',
         port=3200,
         user='root',
-        password='BigPatOnHead15'
+        password='abc123'
     )
 
     # Specify schema name
-    schema = 'FitQuest'
+    schema = 'fitquest'
 
     # Insert data from CSV files
     for csv_file in list_of_csv:

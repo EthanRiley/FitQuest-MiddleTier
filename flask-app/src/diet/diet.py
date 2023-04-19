@@ -103,7 +103,7 @@ def add_to_diet():
      protein=the_data['totalprotein']
      fat=the_data['totalfat']
      dietname=the_data['dietname']
-     userID = the_data['targetUser']
+     userID = the_data['selectTagetUser']
 
     #check to see if the userID is in the database
      cursor = db.get_db().cursor()
@@ -153,7 +153,7 @@ def updateDiet():
      for row in theData:
         existingUsers.append(row[0])
      if dname not in existingUsers:
-         return "User not in Database"
+         return "Diet not in Database"
      
     
      query = 'UPDATE Diet set totalcarbs = "' + str(newcarbs) + '", totalfat = "' + str(newfat)
@@ -194,8 +194,19 @@ def deldiet():
     try:
         the_data = request.json
         current_app.logger.info(the_data)
-        delete=the_data['todelete']
-        query = 'Delete from Diet where dietID = "' + delete + '"'
+        # make sure diet is in database
+        tdelete=the_data['toDelete']
+        cursor = db.get_db().cursor()
+        cursor.execute(
+            '''select dietID from Diet''')
+        existingUsers = []
+        theData = cursor.fetchall()
+        for row in theData:
+            existingUsers.append(row[0])
+        if tdelete not in existingUsers:
+            return "Diet not in Database"
+
+        query = 'Delete from Diet where dietID = "' + tdelete + '"'
         current_app.logger.info(query)
             
         cursor = db.get_db().cursor()

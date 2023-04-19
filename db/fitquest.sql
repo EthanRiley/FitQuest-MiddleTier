@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS `FitQuest`;
-CREATE SCHEMA IF NOT EXISTS `FitQuest` DEFAULT CHARACTER SET latin1 ;
-USE `FitQuest`;
+DROP SCHEMA IF EXISTS `fitquest`;
+CREATE SCHEMA IF NOT EXISTS `fitquest` DEFAULT CHARACTER SET latin1 ;
+USE `fitquest`;
 
 create table if not exists Trainers (
 	trainerID VARCHAR(10) NOT NULL,
@@ -63,6 +63,7 @@ create table if not exists Diet (
 	CONSTRAINT d_key
 		FOREIGN KEY (userID)
 			REFERENCES Users (userID)
+	on DELETE cascade
 );
 
 create table if not exists DietFoods (
