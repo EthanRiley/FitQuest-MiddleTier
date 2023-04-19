@@ -127,7 +127,7 @@ def add_to_diet():
      dietID = int(max(json_data)) + 1
 
      query = 'insert into Diet (totalcarbs, totalprotien, totalfat, dietname, dietID, userID) values ("'
-     query += carbs + '", "' + protein + '", "' + fat  + '", "' + dietname + '", "' + str(dietID) + '", "'
+     query += str(abs(int(carbs))) + '", "' + str(abs(int(protein))) + '", "' + str(abs(int(fat)))  + '", "' + dietname + '", "' + str(dietID) + '", "'
      query += userID + '")'
      current_app.logger.info(query)
      

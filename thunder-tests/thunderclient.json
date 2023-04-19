@@ -480,13 +480,51 @@
     "colId": "3297540b-e3e5-44a2-a4ae-047cea31d42f",
     "containerId": "",
     "name": "testGetTrainerInfo",
-    "url": "localhost:8001/t/getPublicTrainerInfo",
+    "url": "localhost:8001/t/PublicTrainerInfo",
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-04-19T11:53:55.021Z",
-    "modified": "2023-04-19T11:54:09.981Z",
+    "modified": "2023-04-19T12:17:06.100Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "952af379-3951-457e-b0d4-01cb7e9138da",
+    "colId": "3297540b-e3e5-44a2-a4ae-047cea31d42f",
+    "containerId": "",
+    "name": "testSearchTrainers",
+    "url": "localhost:8001/t/PublicTrainerInfo",
+    "method": "PUT",
+    "sortNum": 60000,
+    "created": "2023-04-19T12:20:14.540Z",
+    "modified": "2023-04-19T12:26:18.632Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"SpecialtySearch\":\"Endurance\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5a6cf1e3-8df6-41a0-802c-1b711870b40d",
+    "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
+    "containerId": "",
+    "name": "TestAddDietNegVals",
+    "url": "localhost:8001/d/addToDiet",
+    "method": "POST",
+    "sortNum": 150000,
+    "created": "2023-04-19T12:32:24.142Z",
+    "modified": "2023-04-19T12:33:14.876Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"totalcarbs\": \"200\",\n  \"totalfat\": \"-67\",\n  \"totalprotein\": \"67\",\n  \"dietname\": \"DefaultDiet\",\n  \"selectTagetUser\": \"1234\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

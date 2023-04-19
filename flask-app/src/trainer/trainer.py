@@ -5,6 +5,34 @@ from src import db
 
 trainer = Blueprint('trainer', __name__)
 
+@trainer.route('/PublicTrainerInfo', methods=['GET', 'PUT'])
+def getPublicTrainerInfo():
+    if request.method == 'GET':
+        cursor = db.get_db().cursor()
+        cursor.execute(
+            '''select TrainerName as Name, rate, specialty from Trainers''')
+        column_headers = [x[0] for x in cursor.description]
+        json_data = []
+        theData = cursor.fetchall()
+        for row in theData:
+            json_data.append(dict(zip(column_headers, row)))
+        return jsonify(json_data)
+    if request.method == 'PUT':
+        cursor = db.get_db().cursor()
+        the_data = request.json
+        current_app.logger.info(the_data)
+        search=the_data['SpecialtySearch']
+        query = 'select TrainerName as Name, rate, specialty from Trainers '
+        query += 'WHERE specialty = "' + search + '"'
+        cursor.execute(query)
+        column_headers = [x[0] for x in cursor.description]
+        json_data = []
+        theData = cursor.fetchall()
+        for row in theData:
+            json_data.append(dict(zip(column_headers, row)))
+        return jsonify(json_data)
+
+
 @trainer.route('/hireTrainer', methods=['POST'])
 def hire_new_trainer():
      the_data = request.json
