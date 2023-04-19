@@ -32,11 +32,11 @@ def create_app():
     # Import the various routes
     from src.user.user import user
     from src.trainer.trainer import trainer
-    from src.manager.manager  import manager
+    from src.diet.diet  import diet
 
     # Register the routes that we just imported so they can be properly handled
     app.register_blueprint(user,       url_prefix='/u')
     app.register_blueprint(trainer,   url_prefix='/t')
-    app.register_blueprint(manager,    url_prefix='/m')
+    app.register_blueprint(diet,    url_prefix='/d')
 
     return app

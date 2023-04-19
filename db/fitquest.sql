@@ -56,7 +56,8 @@ create table if not exists Diet (
 	totalcarbs DECIMAL(8, 2),
 	totalprotien DECIMAL(8, 2),
 	totalfat DECIMAL(8, 2),
-	dietID VARCHAR(10) NOT NULL,
+	dietID VARCHAR(10) NOT NULL ,
+	dietname VARCHAR(20)
 	userID VARCHAR(10) NOT NULL,
 	PRIMARY KEY (dietID),
 	CONSTRAINT d_key

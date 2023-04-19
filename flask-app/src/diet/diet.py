@@ -1,45 +1,10 @@
 from flask import Blueprint, request, jsonify, make_response, current_app
 import json
-import random
 from src import db
 
-trainer = Blueprint('trainer', __name__)
+diet = Blueprint('diets', __name__)
 
-@trainer.route('/hireTrainer', methods=['POST'])
-def test():
-     the_data = request.json
-     current_app.logger.info(the_data)
-     trainerID=the_data['trainerID']
-     rate=the_data['rate']
-     specialty=the_data['specialty']
-     TrainerName=the_data['TrainerName']
-     query = 'insert into Trainers ( trainerID, rate, specialty, TrainerName) values ("'
-     query +=  trainerID + '", ' +str(rate) + ', "' + specialty + '", "'  + TrainerName + '")'
-     current_app.logger.info(query)
-     cursor = db.get_db().cursor()
-     cursor.execute(query)
-     db.get_db().commit()
-     return "sucesses added"
-
-
-
-@trainer.route('/hireTrainer', methods=['POST'])
-def test():
-     the_data = request.json
-     current_app.logger.info(the_data)
-     trainerID=the_data['trainerID']
-     rate=the_data['rate']
-     specialty=the_data['specialty']
-     TrainerName=the_data['TrainerName']
-     query = 'insert into Trainers ( trainerID, rate, specialty, TrainerName) values ("'
-     query +=  trainerID + '", ' +str(rate) + ', "' + specialty + '", "'  + TrainerName + '")'
-     current_app.logger.info(query)
-     cursor = db.get_db().cursor()
-     cursor.execute(query)
-     db.get_db().commit()
-     return "sucesses added"
-
-@trainer.route('/retreiveDiet', methods=['GET'])
+@diet.route('/retreiveDiet', methods=['GET'])
 def look_at_diets():
     # get a cursor object from the database
     cursor = db.get_db().cursor()
@@ -47,7 +12,7 @@ def look_at_diets():
     # use cursor to query the database for a list of products
     cursor.execute(
         '''SELECT dietname AS label, dietID AS value
-            FROM Diet''')
+           FROM Diet''')
 
     # grab the column headers from the returned data
     column_headers = [x[0] for x in cursor.description]
@@ -66,7 +31,45 @@ def look_at_diets():
 
     return jsonify(json_data)
 
-@trainer.route('/dietbreakdown', methods=['GET'])
+@diet.route('/graphDiet', methods=['POST'])
+def getGraphData():
+    # get a cursor object from the database
+    cursor = db.get_db().cursor()
+    the_data = request.json
+    current_app.logger.info(the_data)
+    # use cursor to query the database for a list of products
+    dietname=the_data['diet_selector_graph']
+    #get protein for a diet
+    query = 'SELECT totalprotien AS y FROM Diet where dietID = "' + dietname + '"'
+    cursor.execute(query)
+    protein = []
+    theData = cursor.fetchall()
+    for row in theData:
+        protein.append(row[0])
+
+    # get carbs for a diet
+    cursor2 = db.get_db().cursor()
+    query = 'SELECT totalcarbs AS y FROM Diet where dietID = "' + dietname + '"'
+    cursor2.execute(query)
+    carbs = []
+    theData = cursor2.fetchall()
+    for row in theData:
+        carbs.append(row[0])
+
+    #get fat for a diet
+    cursor3 = db.get_db().cursor()
+    query = 'SELECT totalfat AS y FROM Diet where dietID = "' + dietname + '"'
+    cursor3.execute(query)
+    fat = []
+    theData = cursor3.fetchall()
+    for row in theData:
+        fat.append(row[0])
+
+    return [{"x":"Total Protein", "y":protein[0]},
+            {"x":"Total Carbs", "y":carbs[0]},
+            {"x":"Total Fat", "y":fat[0]}]
+
+@diet.route('/dietbreakdown', methods=['GET'])
 def dbreakdown():
     # get a cursor object from the database
     cursor = db.get_db().cursor()
@@ -92,43 +95,7 @@ def dbreakdown():
 
     return jsonify(json_data)
 
-@trainer.route('/totalprotein', methods=['GET'])
-def totalprotein():
-    cursor = db.get_db().cursor()
-    cursor.execute(
-        '''select totalprotien from Diet''')
-    column_headers = [x[0] for x in cursor.description]
-    json_data = []
-    theData = cursor.fetchall()
-    for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
-    return jsonify(json_data)
-
-@trainer.route('/totalfat', methods=['GET'])
-def totalfat():
-    cursor = db.get_db().cursor()
-    cursor.execute(
-        '''select totalfat from Diet''')
-    column_headers = [x[0] for x in cursor.description]
-    json_data = []
-    theData = cursor.fetchall()
-    for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
-    return jsonify(json_data)
-
-@trainer.route('/totalcarbs', methods=['GET'])
-def totalcarbs():
-    cursor = db.get_db().cursor()
-    cursor.execute(
-        '''select totalcarbs from Diet''')
-    column_headers = [x[0] for x in cursor.description]
-    json_data = []
-    theData = cursor.fetchall()
-    for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
-    return jsonify(json_data)
-
-@trainer.route('/addToDiet', methods=['POST'])
+@diet.route('/addToDiet', methods=['POST'])
 def add_to_diet():
      the_data = request.json
      current_app.logger.info(the_data)
@@ -136,20 +103,32 @@ def add_to_diet():
      protein=the_data['totalprotein']
      fat=the_data['totalfat']
      dietname=the_data['dietname']
+     userID = the_data['targetUser']
+
+    #check to see if the userID is in the database
+     cursor = db.get_db().cursor()
+     cursor.execute( '''select userID from Users''')
+     json_data = []
+     theData = cursor.fetchall()
+     for row in theData:
+        json_data.append(row[0])
+     if userID not in json_data:
+         return "User not in Database"
+
 
      # make a new dietID
      cursor = db.get_db().cursor()
      cursor.execute(
         '''select dietID from Diet''')
-     column_headers = [x[0] for x in cursor.description]
      json_data = []
      theData = cursor.fetchall()
      for row in theData:
         json_data.append(row[0])
      dietID = int(max(json_data)) + 1
 
-     query = 'insert into Diet (totalcarbs, totalprotien, totalfat, dietname, dietID) values ("'
-     query +=  carbs + '", "' + protein + '", "' + fat  + '", "' + dietname + '", "' + str(dietID) + '")'
+     query = 'insert into Diet (totalcarbs, totalprotien, totalfat, dietname, dietID, userID) values ("'
+     query += carbs + '", "' + protein + '", "' + fat  + '", "' + dietname + '", "' + str(dietID) + '", "'
+     query += userID + '")'
      current_app.logger.info(query)
      
      cursor = db.get_db().cursor()
@@ -157,7 +136,7 @@ def add_to_diet():
      db.get_db().commit()
      return "sucesses"
 
-@trainer.route('/updateDiet', methods=['PUT'])
+@diet.route('/updateDiet', methods=['PUT'])
 def updateDiet():
      the_data = request.json
      current_app.logger.info(the_data)
@@ -165,8 +144,20 @@ def updateDiet():
      newfat = the_data['updateFat']
      newprotein = the_data['updateProtein']
      dname = the_data['DietPicker']
+     
+     cursor = db.get_db().cursor()
+     cursor.execute(
+        '''select dietID from Diet''')
+     existingUsers = []
+     theData = cursor.fetchall()
+     for row in theData:
+        existingUsers.append(row[0])
+     if dname not in existingUsers:
+         return "User not in Database"
+     
+    
      query = 'UPDATE Diet set totalcarbs = "' + str(newcarbs) + '", totalfat = "' + str(newfat)
-     query += '", totalprotien = "' + str(newprotein) + '" where dietname = "( SELECT' + dname + '"'
+     query += '", totalprotien = "' + str(newprotein) + '" where dietname = "' + dname + '"'
      current_app.logger.info(query)
      
      cursor = db.get_db().cursor()
@@ -174,7 +165,7 @@ def updateDiet():
      db.get_db().commit()
      return "sucesses"
 
-@trainer.route('/equipment', methods=['GET', 'POST', 'PUT', 'DELETE'])
+@diet.route('/equipment', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def get_specefic_equipment():
     if ['GET']:
         cursor = db.get_db().cursor()
@@ -197,3 +188,19 @@ def get_specefic_equipment():
         cursor.execute(query)
         db.get_db().commit()
         return "sucesses"
+
+@diet.route('/deletediet', methods=['DELETE'])
+def deldiet():
+    try:
+        the_data = request.json
+        current_app.logger.info(the_data)
+        delete=the_data['todelete']
+        query = 'Delete from Diet where dietID = "' + delete + '"'
+        current_app.logger.info(query)
+            
+        cursor = db.get_db().cursor()
+        cursor.execute(query)
+        db.get_db().commit()
+        return "sucesses"
+    except:
+        return "not in database"
