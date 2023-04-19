@@ -31,7 +31,7 @@ def look_at_diets():
 
     return jsonify(json_data)
 
-@diet.route('/graphDiet', methods=['POST'])
+@diet.route('/graphDiet', methods=['GET'])
 def getGraphData():
     # get a cursor object from the database
     cursor = db.get_db().cursor()
@@ -105,7 +105,7 @@ def add_to_diet():
      dietname=the_data['dietname']
      userID = the_data['selectTagetUser']
 
-    #check to see if the userID is in the database
+     #check to see if the userID is in the database
      cursor = db.get_db().cursor()
      cursor.execute( '''select userID from Users''')
      json_data = []
@@ -194,6 +194,7 @@ def deldiet():
     try:
         the_data = request.json
         current_app.logger.info(the_data)
+        
         # make sure diet is in database
         tdelete=the_data['toDelete']
         cursor = db.get_db().cursor()

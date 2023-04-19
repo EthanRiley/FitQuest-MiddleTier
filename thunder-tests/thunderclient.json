@@ -133,10 +133,10 @@
     "containerId": "",
     "name": "testGraph",
     "url": "localhost:8001/d/graphDiet",
-    "method": "POST",
+    "method": "GET",
     "sortNum": 100000,
     "created": "2023-04-18T19:55:59.841Z",
-    "modified": "2023-04-18T23:56:42.561Z",
+    "modified": "2023-04-19T15:55:57.439Z",
     "headers": [],
     "params": [],
     "body": {
@@ -169,9 +169,14 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-04-19T08:59:34.388Z",
-    "modified": "2023-04-19T09:01:31.802Z",
+    "modified": "2023-04-19T17:01:05.787Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\"exerciseID\":\"1\",\n\"numDay\":1,\n\"pattern\":\".8\",\n\"programID\":\"1\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -179,13 +184,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "getProgramDays",
-    "url": "localhost:8001/u/programDays/007700",
+    "url": "localhost:8001/u/programDays",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-04-19T09:02:01.336Z",
-    "modified": "2023-04-19T09:10:08.996Z",
+    "modified": "2023-04-19T17:13:00.831Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"programName\": \"19998897\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -193,13 +203,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "getProgramDetails",
-    "url": "localhost:8001/u/program/007700/2",
+    "url": "localhost:8001/u/program",
     "method": "GET",
     "sortNum": 40000,
     "created": "2023-04-19T09:02:14.976Z",
-    "modified": "2023-04-19T09:14:45.360Z",
+    "modified": "2023-04-19T17:06:01.145Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"programName\": \"1\",\n  \"DayPicker\":1\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -207,13 +222,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "GetUserMax",
-    "url": "localhost:8001/u/max/700/0",
+    "url": "localhost:8001/u/max",
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-04-19T09:02:54.575Z",
-    "modified": "2023-04-19T10:15:59.053Z",
+    "modified": "2023-04-19T17:07:37.275Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"Weight1\": \"295\",\n  \"Exercise1\": \"Bench Press\",\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"ExID\": \"1\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -221,13 +241,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "GetUsersProgram",
-    "url": "localhost:8001/u/userPrograms/700",
+    "url": "localhost:8001/u/userPrograms",
     "method": "GET",
     "sortNum": 60000,
     "created": "2023-04-19T09:03:35.432Z",
-    "modified": "2023-04-19T10:20:55.885Z",
+    "modified": "2023-04-19T17:09:24.418Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"SelectUser\": \"1\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -235,16 +260,16 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "UpdateMax",
-    "url": "localhost:8001/u/max/700/0",
+    "url": "localhost:8001/u/max",
     "method": "PUT",
     "sortNum": 70000,
     "created": "2023-04-19T09:04:01.024Z",
-    "modified": "2023-04-19T10:32:13.663Z",
+    "modified": "2023-04-19T17:09:47.972Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"Text1\": \"Form\",\n  \"Weight1_1\": \"\",\n  \"Exercise1\": \"\",\n  \"Weight1_2\": \"\",\n  \"Weight1_3\": \"\",\n  \"Weight1_4\": \"\",\n  \"Weight1_5\": \"\",\n  \"RepLabel1\": \"Reps\",\n  \"Reps1_1\": \"5\",\n  \"Reps1_2\": \"5\",\n  \"Reps1_3\": \"5\",\n  \"Reps1_4\": \"5\",\n  \"Reps1_5\": \"5\",\n  \"ProgramName\": \"2 day upper lower split\",\n  \"check1\": true,\n  \"check2\": true,\n  \"check3\": true,\n  \"check4\": true,\n  \"check5\": true,\n  \"DayPicker\": 1\n}",
+      "raw": "{\n  \"Plan\": \"Form\",\n  \"Weight1\": \"295\",\n  \"Exercise1\": \"Bench Press\",\n  \"W2\": \"295\",\n  \"W3\": \"295\",\n  \"W4\": \"295\",\n  \"W5\": \"295\",\n  \"repLabel\": \"Reps\",\n  \"RL1\": \"5\",\n  \"RL2\": \"5\",\n  \"RL3\": \"5\",\n  \"RL4\": \"5\",\n  \"RL5\": \"5\",\n  \"check1\": true,\n  \"check2\": true,\n  \"check3\": true,\n  \"check4\": true,\n  \"check5\": true,\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"DayPicker\": 1,\n  \"ExID\": \"1\"\n}",
       "form": []
     },
     "tests": []
@@ -254,16 +279,16 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "UpdateMaxEdgeCase",
-    "url": "localhost:8001/u/max/700/0",
+    "url": "localhost:8001/u/max",
     "method": "PUT",
     "sortNum": 80000,
     "created": "2023-04-19T09:04:34.831Z",
-    "modified": "2023-04-19T10:53:21.877Z",
+    "modified": "2023-04-19T17:10:18.735Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"Weight1\": \"250\",\n  \"W2\": \"250\",\n  \"W3\": \"250\",\n  \"W4\": \"250\",\n  \"W5\": \"250\",\n  \"RL1\": \"5\",\n  \"RL2\": \"5\",\n  \"RL3\": \"5\",\n  \"RL4\": \"5\",\n  \"RL5\": \"5\",\n  \"check1\": true,\n  \"check2\": true,\n  \"check3\": false,\n  \"check4\": true,\n  \"check5\": true\n}",
+      "raw": "{\n  \"Plan\": \"Form\",\n  \"Weight1\": \"295\",\n  \"Exercise1\": \"Bench Press\",\n  \"W2\": \"295\",\n  \"W3\": \"295\",\n  \"W4\": \"295\",\n  \"W5\": \"295\",\n  \"repLabel\": \"Reps\",\n  \"RL1\": \"5\",\n  \"RL2\": \"5\",\n  \"RL3\": \"5\",\n  \"RL4\": \"5\",\n  \"RL5\": \"5\",\n  \"check1\": true,\n  \"check2\": true,\n  \"check3\": false,\n  \"check4\": true,\n  \"check5\": true,\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"DayPicker\": 1,\n  \"ExID\": \"1\"\n}",
       "form": []
     },
     "tests": []
@@ -277,9 +302,14 @@
     "method": "GET",
     "sortNum": 90000,
     "created": "2023-04-19T09:22:55.261Z",
-    "modified": "2023-04-19T09:29:57.248Z",
+    "modified": "2023-04-19T17:10:44.383Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\"exerciseID\":\"10\",\n\"numDay\":1,\n\"pattern\":\".8\",\n\"programID\":\"1\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -287,13 +317,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "getProgramDtlsEdge1",
-    "url": "localhost:8001/u/program/00770/2",
+    "url": "localhost:8001/u/program",
     "method": "GET",
     "sortNum": 100000,
     "created": "2023-04-19T09:51:31.113Z",
-    "modified": "2023-04-19T10:00:53.700Z",
+    "modified": "2023-04-19T17:11:19.670Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"programName\": \"10\",\n  \"DayPicker\":1\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -301,13 +336,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "getProgramDtlsEdge2",
-    "url": "localhost:8001/u/program/007700/8",
+    "url": "localhost:8001/u/program",
     "method": "GET",
     "sortNum": 110000,
     "created": "2023-04-19T09:51:47.883Z",
-    "modified": "2023-04-19T10:01:01.148Z",
+    "modified": "2023-04-19T17:11:42.405Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"programName\": \"1\",\n  \"DayPicker\":100\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -315,13 +355,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "getProgramDaysEdge",
-    "url": "localhost:8001/u/programDays/00770",
+    "url": "localhost:8001/u/programDays",
     "method": "GET",
     "sortNum": 120000,
     "created": "2023-04-19T10:03:07.841Z",
-    "modified": "2023-04-19T10:03:22.475Z",
+    "modified": "2023-04-19T17:13:25.927Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"programName\": \"19998897\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -329,13 +374,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "GetUserMaxNoUser",
-    "url": "localhost:8001/u/max/7000/0",
+    "url": "localhost:8001/u/max",
     "method": "GET",
     "sortNum": 130000,
     "created": "2023-04-19T10:16:29.554Z",
-    "modified": "2023-04-19T10:19:57.137Z",
+    "modified": "2023-04-19T17:13:52.660Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"Weight1\": \"295\",\n  \"Exercise1\": \"Bench Press\",\n  \"SelectUser\": \"1123456789\",\n  \"programName\": \"1\",\n  \"ExID\": \"1\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -343,13 +393,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "GetUserMaxNoExercise",
-    "url": "localhost:8001/u/max/700/20",
+    "url": "localhost:8001/u/max",
     "method": "GET",
     "sortNum": 140000,
     "created": "2023-04-19T10:16:44.807Z",
-    "modified": "2023-04-19T10:20:06.381Z",
+    "modified": "2023-04-19T17:14:06.145Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"Weight1\": \"295\",\n  \"Exercise1\": \"Bench Press\",\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"ExID\": \"123456781\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -357,13 +412,18 @@
     "colId": "ccfe90ee-fe9d-4bae-95b4-779fc7f72b44",
     "containerId": "",
     "name": "getUsersProgramNoUser",
-    "url": "localhost:8001/u/userPrograms/90000",
+    "url": "localhost:8001/u/userPrograms",
     "method": "GET",
     "sortNum": 150000,
     "created": "2023-04-19T10:17:02.487Z",
-    "modified": "2023-04-19T10:21:25.351Z",
+    "modified": "2023-04-19T17:14:27.543Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"SelectUser\": \"1123456789\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {

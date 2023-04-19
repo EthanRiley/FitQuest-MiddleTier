@@ -107,10 +107,14 @@ def get_allTrainer():
     return jsonify(json_data)
 
 
-@user.route('/max/<string:userID>/<string:exerciseID>', methods=['GET', 'PUT'])
-def get_max(userID, exerciseID):
+@user.route('/max', methods=['GET', 'PUT'])
+def get_max():
     # route for retreiving the existing max from the database
     if request.method == 'GET':
+        the_data = request.json
+        current_app.logger.info(the_data)
+        userID=the_data["SelectUser"]
+        exerciseID=the_data["ExID"]
         # get a cursor object from the database
         cursor = db.get_db().cursor()
 
@@ -151,6 +155,8 @@ def get_max(userID, exerciseID):
     if request.method == 'PUT':
         the_data = request.json
         current_app.logger.info(the_data)
+        userID=the_data["SelectUser"]
+        exerciseID=the_data["ExID"]
         cursor = db.get_db().cursor()
 
         # use cursor to query the database for a list of products
@@ -175,12 +181,11 @@ def get_max(userID, exerciseID):
         new_max = json_data[0]['max']
         if the_data['check1'] and the_data['check2'] and the_data['check3'] and the_data['check4'] and the_data['check5']:
             new_max = int(new_max) + 5
-            increase = "Congrats You are ready to move on"
+            increase = str("Congrats You are ready to move on")
         else:
-            increase = 'Keep working, not qiute ready to move up'
-        query = f'''UPDATE UserExercises
-                    SET max = {str(new_max)}
-                    WHERE userID = "{userID}" AND exerciseID = "{exerciseID}"'''
+            increase = str("Keep working, not qiute ready to move up")
+
+        query = f'''UPDATE UserExercises SET max = {str(new_max)} WHERE userID = "{userID}" AND exerciseID = "{exerciseID}"'''
         current_app.logger.info(query)
 
         cursor = db.get_db().cursor()
@@ -188,8 +193,11 @@ def get_max(userID, exerciseID):
         db.get_db().commit()
         return increase
     
-@user.route('/userPrograms/<string:userID>', methods=['GET'])
-def get_users_program(userID):
+@user.route('/userPrograms', methods=['GET'])
+def get_users_program():
+    the_data = request.json
+    current_app.logger.info(the_data)
+    userID=the_data['SelectUser']
     cursor = db.get_db().cursor()
 
     userID = checkin("userID", "Users", userID)
@@ -218,9 +226,12 @@ def get_users_program(userID):
         json_data.append(dict(zip(column_headers, row)))
 
     return jsonify(json_data)
-    
-@user.route('/programDays/<string:programID>', methods=['GET'])
-def get_program_days(programID):
+
+@user.route('/programDays', methods=['GET'])
+def get_program_days():
+    the_data = request.json
+    current_app.logger.info(the_data)
+    programID=the_data["programName"]
     cursor = db.get_db().cursor()
 
     programID = checkin("programID", "Programs", programID)
@@ -249,8 +260,12 @@ def get_program_days(programID):
 
     return jsonify(json_data)
 
-@user.route('program/<string:programID>/<int:numDay>', methods=['GET'])
-def get_program_details(programID, numDay):
+@user.route('/program', methods=['GET'])
+def get_program_details():
+    the_data = request.json
+    current_app.logger.info(the_data)
+    programID=the_data["programName"]
+    numDay =the_data["DayPicker"]
     cursor = db.get_db().cursor()
     
     # make sure programID is in the database
