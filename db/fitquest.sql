@@ -43,9 +43,9 @@ create table if not exists TrainerHistory (
 
 create table if not exists Foods (
 	foodID VARCHAR(10),
-	foodName VARCHAR(20),
+	foodName VARCHAR(200),
 	NumServings DECIMAL(6, 2),
-	unit VARCHAR(10),
+	unit VARCHAR(50),
 	carbs DECIMAL(6, 2),
 	protien DECIMAL(6, 2),
 	fat DECIMAL(6, 2),
@@ -57,7 +57,7 @@ create table if not exists Diet (
 	totalprotien DECIMAL(8, 2),
 	totalfat DECIMAL(8, 2),
 	dietID VARCHAR(10) NOT NULL ,
-	dietname VARCHAR(20),
+	dietname VARCHAR(200),
 	userID VARCHAR(10) NOT NULL,
 	PRIMARY KEY (dietID),
 	CONSTRAINT d_key
@@ -68,14 +68,13 @@ create table if not exists Diet (
 create table if not exists DietFoods (
 	foodID VARCHAR(10),
 	dietID VARCHAR(10),
-	foodName VARCHAR(20),
+	foodName VARCHAR(200),
 	logdate DATETIME DEFAULT CURRENT_TIMESTAMP(),
 	mealNum VARCHAR(10) NOT NULL ,
 	servings decimal(6, 2),
 	carbs DECIMAL(6, 2),
 	protien DECIMAL(6, 2),
 	fat DECIMAL(6, 2),
-	PRIMARY KEY (mealNum),
 	CONSTRAINT food_k
         FOREIGN KEY (foodID)
             REFERENCES Foods (foodID),
@@ -88,14 +87,13 @@ create table if not exists Weight (
 	userID VARCHAR(10),
 	weight INT,
 	date DATETIME DEFAULT CURRENT_TIMESTAMP(),
-	PRIMARY KEY (weight),
 	CONSTRAINT weight_k FOREIGN KEY (userID) REFERENCES Users (userID)
 );
 
 create table if not exists Equipment (
 	machineid VARCHAR(10) NOT NULL,
 	datepurchased DATETIME DEFAULT CURRENT_TIMESTAMP(),
-	machinestatus VARCHAR(4),
+	machinestatus VARCHAR(200),
 	machineName VARCHAR(99),
 	PRIMARY KEY (machineid)
 );
@@ -107,8 +105,7 @@ create table if not exists Staff (
 	hourlyRate DECIMAL(5, 2),
 	Ename VARCHAR(40),
 	supID VARCHAR(10) NOT NULL,
-	PRIMARY KEY (employeeID),
-	CONSTRAINT sup_k FOREIGN KEY (supID) REFERENCES Staff (employeeID)
+	PRIMARY KEY (employeeID)
 );
 
 create table if not exists WorkOrders (
@@ -151,8 +148,8 @@ create table if not exists Exercises (
 
 create table if not exists UserExercises (
 	exerciseID VARCHAR(10),
-	max DECIMAL(4,2),
-	reaction DECIMAL(3,1),
+	max INT,
+	reaction varchar(500),
 	userID VARCHAR(10),
 	ratedate DATETIME DEFAULT CURRENT_TIMESTAMP(),
     CONSTRAINT ex_ex_key FOREIGN KEY (exerciseID) REFERENCES Exercises (exerciseID),

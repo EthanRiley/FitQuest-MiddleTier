@@ -1,26 +1,26 @@
-machineID,datePurchased,machineStatus,machineName
-1,2022-04-27 04:54:21,tristique tortor eu,pede malesuada in imperdiet
-2,2022-10-20 11:26:11,posuere,odio
-3,2022-10-23 04:45:53,nonummy,erat
-4,2022-07-17 12:56:40,posuere cubilia curae,sollicitudin mi sit amet
-5,2023-02-07 11:33:49,potenti nullam porttitor,pede libero quis orci
-6,2022-11-07 14:07:38,duis aliquam,in faucibus orci
-7,2022-11-04 16:46:50,sapien,ut nunc vestibulum
-8,2022-06-15 00:21:27,molestie hendrerit at,luctus
-9,2023-04-14 11:59:22,dis,sit amet sapien
-10,2022-07-24 19:00:03,integer ac,urna
-11,2023-03-15 20:43:15,vestibulum sit,accumsan tellus
-12,2023-03-17 02:42:52,ultrices posuere cubilia,erat
-13,2022-07-03 10:25:25,fusce consequat,morbi non lectus
-14,2022-04-24 15:38:07,elementum eu,eget elit sodales scelerisque
-15,2022-07-07 13:30:13,sagittis nam,iaculis
-16,2023-01-31 06:58:30,nulla,duis bibendum felis
-17,2022-09-15 09:59:33,cursus,eu mi
-18,2022-11-16 06:49:12,fermentum justo,amet turpis elementum ligula
-19,2022-12-29 12:04:21,ac tellus,eu tincidunt in leo
-20,2022-10-13 04:54:41,lorem ipsum,posuere cubilia curae mauris
-21,2022-04-17 11:36:36,consectetuer adipiscing elit,in tempus
-22,2023-03-25 18:35:59,faucibus,morbi porttitor lorem id
-23,2022-05-28 19:05:18,ligula,accumsan tellus
-24,2022-10-28 08:52:41,felis eu sapien,non sodales sed
-25,2022-05-17 11:51:15,gravida sem,eget
+machineID,datepurchased,machinestatus,machineName
+1,2022-12-27 06:32:37,ultrices aliquet,pede morbi porttitor
+2,2022-06-02 17:07:26,felis sed lacus,sed magna at nunc
+3,2022-05-21 05:00:43,quam sapien varius,sed
+4,2023-03-10 20:27:20,ut,suspendisse
+5,2022-09-25 00:23:06,consectetuer,morbi a ipsum integer
+6,2023-02-13 08:00:38,sit amet,quis tortor
+7,2022-06-19 03:37:24,ligula nec,curae donec pharetra
+8,2022-04-27 15:57:26,consequat,maecenas tristique
+9,2023-03-12 13:51:41,ac diam,malesuada in imperdiet et
+10,2023-02-27 13:27:01,erat vestibulum,hendrerit
+11,2022-07-18 02:00:29,adipiscing,semper rutrum nulla nunc
+12,2022-11-22 05:58:14,molestie sed justo,integer ac neque duis
+13,2022-11-18 10:12:58,a libero nam,nunc vestibulum ante ipsum
+14,2022-11-10 19:40:14,dolor morbi vel,mauris ullamcorper purus
+15,2022-06-27 02:09:17,bibendum morbi non,vel
+16,2022-08-04 02:18:56,turpis donec,dictumst aliquam augue quam
+17,2022-09-11 21:43:35,erat vestibulum,sit amet
+18,2023-04-04 12:16:29,felis,tortor id nulla
+19,2022-07-29 22:03:05,nulla,faucibus orci luctus et
+20,2023-04-08 23:39:18,ac neque,morbi vestibulum velit
+21,2022-07-06 17:36:20,sem sed,eget semper rutrum
+22,2022-06-03 07:07:26,amet,ac
+23,2022-06-25 14:50:35,consequat morbi,sapien arcu sed augue
+24,2022-07-13 10:29:23,et ultrices posuere,accumsan odio
+25,2022-08-07 16:15:27,nunc,lobortis convallis tortor
