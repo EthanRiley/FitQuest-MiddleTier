@@ -21,24 +21,6 @@ def test():
      db.get_db().commit()
      return "sucesses added"
 
-
-
-@trainer.route('/hireTrainer', methods=['POST'])
-def test():
-     the_data = request.json
-     current_app.logger.info(the_data)
-     trainerID=the_data['trainerID']
-     rate=the_data['rate']
-     specialty=the_data['specialty']
-     TrainerName=the_data['TrainerName']
-     query = 'insert into Trainers ( trainerID, rate, specialty, TrainerName) values ("'
-     query +=  trainerID + '", ' +str(rate) + ', "' + specialty + '", "'  + TrainerName + '")'
-     current_app.logger.info(query)
-     cursor = db.get_db().cursor()
-     cursor.execute(query)
-     db.get_db().commit()
-     return "sucesses added"
-
 @trainer.route('/retreiveDiet', methods=['GET'])
 def look_at_diets():
     # get a cursor object from the database
