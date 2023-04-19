@@ -6,7 +6,7 @@ from src import db
 trainer = Blueprint('trainer', __name__)
 
 @trainer.route('/hireTrainer', methods=['POST'])
-def hire_new_trainer():
+def test():
      the_data = request.json
      current_app.logger.info(the_data)
      trainerID=the_data['trainerID']
@@ -20,4 +20,5 @@ def hire_new_trainer():
      cursor.execute(query)
      db.get_db().commit()
      return "sucesses added"
+
 
