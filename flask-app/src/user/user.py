@@ -2,6 +2,25 @@ from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
+# checks to see if a users imput is in the database
+def checkin(catname, relname, dname):
+    """
+    Params: 
+    catname: name of column
+    relname: name of table
+    dname: users input
+    """
+    cursor = db.get_db().cursor()
+    cursor.execute('select ' + catname + ' from ' + relname)
+    querylist = []
+    theData = cursor.fetchall()
+    for row in theData:
+        querylist.append(row[0])
+    if dname not in querylist:
+        return "Not in Database"
+    else:
+        return dname
+
 user = Blueprint('user', __name__)
 
 @user.route('/addUser', methods=['GET', 'POST'])
@@ -158,6 +177,9 @@ def get_users_program(userID):
 def get_program_days(programID):
     cursor = db.get_db().cursor()
 
+    programID = checkin("programID", "Programs", programID)
+    if programID == "Not in Database":
+        return "Program Not in Database"
     # use cursor to query the database for a list of products
     cursor.execute(
         f'''SELECT numDay as label, numDay as value
@@ -184,6 +206,20 @@ def get_program_days(programID):
 @user.route('program/<string:programID>/<int:numDay>', methods=['GET'])
 def get_program_details(programID, numDay):
     cursor = db.get_db().cursor()
+    
+    # make sure programID is in the database
+    programID = checkin("programID", "Programs", programID)
+    if programID == "Not in Database":
+        return "Program Not in Database"
+    
+    # make sure day for that program is in the database
+    cursor.execute(f'''select numDay from ProgramDetails where programID = "{programID}"''')
+    querylist = []
+    theData = cursor.fetchall()
+    for row in theData:
+        querylist.append(row[0])
+    if numDay not in querylist:
+        return "Day " + str(numDay) + " for programID " + programID + " Not in Database"
 
     # use cursor to query the database for a list of products
     cursor.execute(
@@ -209,7 +245,9 @@ def get_program_details(programID, numDay):
 @user.route('exercise/<string:exerciseID>', methods=['GET'])
 def get_exercise(exerciseID):
     cursor = db.get_db().cursor()
-
+    exerciseID = checkin("exerciseID", "Exercises", exerciseID)
+    if exerciseID == "Not in Database":
+        return "Not in Database"
     # use cursor to query the database for a list of products
     cursor.execute(
         f'''Select * from Exercises where exerciseID = "{exerciseID}" ''')
@@ -228,6 +266,5 @@ def get_exercise(exerciseID):
     # the column headers. 
     for row in theData:
         json_data.append(dict(zip(column_headers, row)))
-
     return jsonify(json_data)
 
