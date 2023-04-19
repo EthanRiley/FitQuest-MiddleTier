@@ -17,7 +17,7 @@ def checkin(catname, relname, dname):
     for row in theData:
         querylist.append(row[0])
     if dname not in querylist:
-        return "Not in Database"
+        return False
     else:
         return dname
 
@@ -29,12 +29,38 @@ def add_new_user():
         the_data = request.json
         current_app.logger.info(the_data)
         username = the_data['username']
+        # ensure username is not in the database
+        check = checkin("username", "Users", username)
+        if check == False:
+            username = the_data['username']
+        else:
+            username += "I"
+
         userpassword = the_data['userpassword']
+
+        # ensure password is not in the database
+        check = checkin("userpassword", "Users", userpassword)
+        if check == False:
+            userpassword = the_data['userpassword']
+        else:
+            return "Try New Password "
         contact = the_data['contact']
-        userID = the_data['userID']
+        
+        # make a new userID
+        cursor = db.get_db().cursor()
+        cursor.execute(
+            '''select userID from Users''')
+        json_data = []
+        theData = cursor.fetchall()
+        for row in theData:
+            json_data.append(row[0])
+        userID = int(max(json_data)) + 1
+
+
         trainerID = the_data['trainerID']
-        query = 'insert into Users ( username, userpassword, contact, userID, trainerID) values ("'
-        query += username + '", "' + userpassword + '", "' + contact + '", ' + userID + ', "' + trainerID + '")'
+
+        query = 'insert into Users (username, userpassword, contact, userID, trainerID) values ("'
+        query += username + '", "' + userpassword + '", "' + contact + '", "' + str(userID) + '", "' + trainerID + '")'
         current_app.logger.info(query)
 
         cursor = db.get_db().cursor()
@@ -90,12 +116,12 @@ def get_max(userID, exerciseID):
 
         # check if user is in the database
         userID = checkin("userID", "Users", userID)
-        if userID == "Not in Database":
+        if userID == False:
             return "userID Not in Database"
         
         # check if exercise is in the database
         exerciseID = checkin("exerciseID", "Exercises", exerciseID)
-        if exerciseID == "Not in Database":
+        if exerciseID == False:
             return "exerciseID Not in Database"
 
         # use cursor to query the database for a list of products
@@ -167,7 +193,7 @@ def get_users_program(userID):
     cursor = db.get_db().cursor()
 
     userID = checkin("userID", "Users", userID)
-    if userID == "Not in Database":
+    if userID == False:
         return "userID Not in Database"
 
     # use cursor to query the database for a list of products
@@ -198,7 +224,7 @@ def get_program_days(programID):
     cursor = db.get_db().cursor()
 
     programID = checkin("programID", "Programs", programID)
-    if programID == "Not in Database":
+    if programID == False:
         return "Program Not in Database"
     # use cursor to query the database for a list of products
     cursor.execute(
@@ -229,7 +255,7 @@ def get_program_details(programID, numDay):
     
     # make sure programID is in the database
     programID = checkin("programID", "Programs", programID)
-    if programID == "Not in Database":
+    if programID == False:
         return "Program Not in Database"
     
     # make sure day for that program is in the database
@@ -266,7 +292,7 @@ def get_program_details(programID, numDay):
 def get_exercise(exerciseID):
     cursor = db.get_db().cursor()
     exerciseID = checkin("exerciseID", "Exercises", exerciseID)
-    if exerciseID == "Not in Database":
+    if exerciseID == False:
         return "Not in Database"
     # use cursor to query the database for a list of products
     cursor.execute(

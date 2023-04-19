@@ -365,5 +365,128 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "83710618-c39c-4c4f-9d2a-7afb44ec40a4",
+    "colId": "b2d7a8c0-8a8d-4063-90ee-e19a80d5364d",
+    "containerId": "",
+    "name": "testHireForm",
+    "url": "localhost:8001/t/hireTrainer",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-04-19T11:06:15.389Z",
+    "modified": "2023-04-19T11:16:57.978Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\"TrainerName\":\"steven Jona\",\n\"specialty\":\"Martial Arts\",\n\"rate\":100\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a49ffe5e-9f7e-4c87-9ada-afaab66bb90c",
+    "colId": "b2d7a8c0-8a8d-4063-90ee-e19a80d5364d",
+    "containerId": "",
+    "name": "testHireFormExistingTrainer",
+    "url": "localhost:8001/t/hireTrainer",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-04-19T11:09:38.437Z",
+    "modified": "2023-04-19T11:13:47.973Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\"TrainerName\":\"John Dont\",\n\"specialty\":\"Martial Arts\",\n\"rate\":100\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "cb2f1b41-5167-49a3-867d-94adda9ad478",
+    "colId": "3297540b-e3e5-44a2-a4ae-047cea31d42f",
+    "containerId": "",
+    "name": "addnewuser",
+    "url": "localhost:8001/u/addUser",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-04-19T11:17:52.270Z",
+    "modified": "2023-04-19T11:47:50.403Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\"username\":\"asdf\",\n\"userpassword\":\"ultacoolpassword\",\n\"contact\":\"\",\n\"trainerID\":\"000111222\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5c38b9b6-945c-40c1-82ba-3491df8d98bc",
+    "colId": "3297540b-e3e5-44a2-a4ae-047cea31d42f",
+    "containerId": "",
+    "name": "adduserDuplicatePsswrd",
+    "url": "localhost:8001/u/addUser",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-04-19T11:38:36.417Z",
+    "modified": "2023-04-19T11:48:03.158Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\"username\":\"asdf\",\n\"userpassword\":\"password\",\n\"contact\":\"\",\n\"trainerID\":\"000111222\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "632da92b-5d61-4f4f-aa2b-8e58e0431faa",
+    "colId": "3297540b-e3e5-44a2-a4ae-047cea31d42f",
+    "containerId": "",
+    "name": "addUserDuplicateName",
+    "url": "localhost:8001/u/addUser",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-04-19T11:38:57.932Z",
+    "modified": "2023-04-19T11:48:36.025Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\"username\":\"Jane Dont\",\n\"userpassword\":\"specificpassword\",\n\"contact\":\"\",\n\"trainerID\":\"000111222\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8e9a5343-4f83-4cfb-8838-4b4c0ecf2113",
+    "colId": "3297540b-e3e5-44a2-a4ae-047cea31d42f",
+    "containerId": "",
+    "name": "getTrainers",
+    "url": "localhost:8001/u/allTrainer",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-04-19T11:39:11.708Z",
+    "modified": "2023-04-19T11:39:35.846Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "b506301c-500d-45c8-b77b-6ecd3fe7432d",
+    "colId": "3297540b-e3e5-44a2-a4ae-047cea31d42f",
+    "containerId": "",
+    "name": "testGetTrainerInfo",
+    "url": "localhost:8001/t/getPublicTrainerInfo",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-04-19T11:53:55.021Z",
+    "modified": "2023-04-19T11:54:09.981Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
