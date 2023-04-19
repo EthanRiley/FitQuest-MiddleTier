@@ -188,12 +188,12 @@
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-04-19T09:02:01.336Z",
-    "modified": "2023-04-19T17:13:00.831Z",
+    "modified": "2023-04-19T19:04:28.481Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"programName\": \"19998897\"\n}",
+      "raw": "{\n  \"programName\": \"1\"\n}",
       "form": []
     },
     "tests": []
@@ -226,12 +226,12 @@
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-04-19T09:02:54.575Z",
-    "modified": "2023-04-19T17:07:37.275Z",
+    "modified": "2023-04-19T21:49:01.449Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"Weight1\": \"295\",\n  \"Exercise1\": \"Bench Press\",\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"ExID\": \"1\"\n}",
+      "raw": "{\n  \"Exercise1\": \"natoque\",\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"ExID\": \"1\",\n  \"DayPicker\": 6,\n  \"weightExept\": \"200\"\n}",
       "form": []
     },
     "tests": []
@@ -245,12 +245,12 @@
     "method": "GET",
     "sortNum": 60000,
     "created": "2023-04-19T09:03:35.432Z",
-    "modified": "2023-04-19T17:09:24.418Z",
+    "modified": "2023-04-19T19:10:39.010Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"SelectUser\": \"1\"\n}",
+      "raw": "{\n  \"SelectUser\": \"10\"\n}",
       "form": []
     },
     "tests": []
@@ -264,12 +264,12 @@
     "method": "PUT",
     "sortNum": 70000,
     "created": "2023-04-19T09:04:01.024Z",
-    "modified": "2023-04-19T17:09:47.972Z",
+    "modified": "2023-04-19T21:53:16.557Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"Plan\": \"Form\",\n  \"Weight1\": \"295\",\n  \"Exercise1\": \"Bench Press\",\n  \"W2\": \"295\",\n  \"W3\": \"295\",\n  \"W4\": \"295\",\n  \"W5\": \"295\",\n  \"repLabel\": \"Reps\",\n  \"RL1\": \"5\",\n  \"RL2\": \"5\",\n  \"RL3\": \"5\",\n  \"RL4\": \"5\",\n  \"RL5\": \"5\",\n  \"check1\": true,\n  \"check2\": true,\n  \"check3\": true,\n  \"check4\": true,\n  \"check5\": true,\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"DayPicker\": 1,\n  \"ExID\": \"1\"\n}",
+      "raw": "{\n  \"Weight1\": \"15\",\n  \"Exercise1\": \"natoque\",\n  \"W2\": \"15\",\n  \"W3\": \"15\",\n  \"W4\": \"15\",\n  \"W5\": \"15\",\n  \"repLabel\": \"Reps\",\n  \"RL1\": \"5\",\n  \"RL2\": \"5\",\n  \"RL3\": \"5\",\n  \"RL4\": \"5\",\n  \"RL5\": \"5\",\n  \"check1\": true,\n  \"check2\": true,\n  \"check3\": true,\n  \"check4\": true,\n  \"check5\": true,\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"ExID\": \"8\",\n  \"DayPicker\": 6,\n  \"weightExept\": \"15\",\n  \"status\": \"\"\n}",
       "form": []
     },
     "tests": []
@@ -283,12 +283,12 @@
     "method": "PUT",
     "sortNum": 80000,
     "created": "2023-04-19T09:04:34.831Z",
-    "modified": "2023-04-19T17:10:18.735Z",
+    "modified": "2023-04-19T21:52:58.088Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"Plan\": \"Form\",\n  \"Weight1\": \"295\",\n  \"Exercise1\": \"Bench Press\",\n  \"W2\": \"295\",\n  \"W3\": \"295\",\n  \"W4\": \"295\",\n  \"W5\": \"295\",\n  \"repLabel\": \"Reps\",\n  \"RL1\": \"5\",\n  \"RL2\": \"5\",\n  \"RL3\": \"5\",\n  \"RL4\": \"5\",\n  \"RL5\": \"5\",\n  \"check1\": true,\n  \"check2\": true,\n  \"check3\": false,\n  \"check4\": true,\n  \"check5\": true,\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"DayPicker\": 1,\n  \"ExID\": \"1\"\n}",
+      "raw": "{\n  \"Plan\": \"Form\",\n  \"Weight1\": \"295\",\n  \"Exercise1\": \"Bench Press\",\n  \"W2\": \"295\",\n  \"W3\": \"295\",\n  \"W4\": \"295\",\n  \"W5\": \"295\",\n  \"repLabel\": \"Reps\",\n  \"RL1\": \"5\",\n  \"RL2\": \"5\",\n  \"RL3\": \"5\",\n  \"RL4\": \"5\",\n  \"RL5\": \"5\",\n  \"check1\": true,\n  \"check2\": true,\n  \"check3\": false,\n  \"check4\": true,\n  \"check5\": true,\n  \"SelectUser\": \"1\",\n  \"programName\": \"1\",\n  \"DayPicker\": 1,\n  \"ExID\": \"1\",\n  \"weightExept\": \"15\",\n  \"status\": \"\"\n}",
       "form": []
     },
     "tests": []
@@ -473,12 +473,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-04-19T11:17:52.270Z",
-    "modified": "2023-04-19T11:47:50.403Z",
+    "modified": "2023-04-19T21:58:20.743Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n\"username\":\"asdf\",\n\"userpassword\":\"ultacoolpassword\",\n\"contact\":\"\",\n\"trainerID\":\"000111222\"\n}",
+      "raw": "{\n  \"username\": \"whoopwhoopsonewname\",\n  \"userpassword\": \"passwordcrazyspec\",\n  \"contact\": \"someone@themail.com\",\n  \"outcome\": \"Try New Password\",\n  \"trainerID\": \"1\"\n}",
       "form": []
     },
     "tests": []
@@ -511,12 +511,12 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2023-04-19T11:38:57.932Z",
-    "modified": "2023-04-19T11:48:36.025Z",
+    "modified": "2023-04-19T21:58:45.456Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n\"username\":\"Jane Dont\",\n\"userpassword\":\"specificpassword\",\n\"contact\":\"\",\n\"trainerID\":\"000111222\"\n}",
+      "raw": "{\n  \"username\": \"jonnydone\",\n  \"userpassword\": \"passwordbutnotthesame\",\n  \"contact\": \"someone@themail.com\",\n  \"outcome\": \"Try New Password\",\n  \"trainerID\": \"1\"\n}",
       "form": []
     },
     "tests": []
