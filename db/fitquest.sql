@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS `fitquest`;
-CREATE SCHEMA IF NOT EXISTS `fitquest` DEFAULT CHARACTER SET latin1 ;
-USE `fitquest`;
+DROP SCHEMA IF EXISTS `FitQuest`;
+CREATE SCHEMA IF NOT EXISTS `FitQuest` DEFAULT CHARACTER SET latin1 ;
+USE `FitQuest`;
 
 create table if not exists Trainers (
 	trainerID VARCHAR(10) NOT NULL,
@@ -58,12 +58,12 @@ create table if not exists Diet (
 	totalfat DECIMAL(8, 2),
 	dietID VARCHAR(10) NOT NULL ,
 	dietname VARCHAR(20)
+	userID VARCHAR(10) NOT NULL,
 	PRIMARY KEY (dietID),
-	CONSTRAINT diet_key
-        FOREIGN KEY (foodID)
-            REFERENCES Foods (foodID)
+	CONSTRAINT d_key
+		FOREIGN KEY (userID)
+			REFERENCES Users (userID)
 );
-
 
 create table if not exists DietFoods (
 	foodID VARCHAR(10),
