@@ -12,7 +12,7 @@ def look_at_diets():
     # use cursor to query the database for a list of products
     cursor.execute(
         '''SELECT dietname AS label, dietID AS value
-            FROM Diet''')
+           FROM Diet''')
 
     # grab the column headers from the returned data
     column_headers = [x[0] for x in cursor.description]
@@ -31,33 +31,43 @@ def look_at_diets():
 
     return jsonify(json_data)
 
-@diet.route('/graphDiet', methods=['GET'])
+@diet.route('/graphDiet', methods=['POST'])
 def getGraphData():
     # get a cursor object from the database
     cursor = db.get_db().cursor()
-    """    the_data = request.json
+    the_data = request.json
     current_app.logger.info(the_data)
-    dietname=the_data['dietname']"""
     # use cursor to query the database for a list of products
-    cursor.execute('''SELECT dietname AS x, totalprotien AS y
-            FROM Diet''')
-
-    # grab the column headers from the returned data
-    column_headers = [x[0] for x in cursor.description]
-
-    # create an empty dictionary object to use in 
-    # putting column headers together with data
-    json_data = []
-
-    # fetch all the data from the cursor
+    dietname=the_data['diet_selector_graph']
+    #get protein for a diet
+    query = 'SELECT totalprotien AS y FROM Diet where dietID = "' + dietname + '"'
+    cursor.execute(query)
+    protein = []
     theData = cursor.fetchall()
-
-    # for each of the rows, zip the data elements together with
-    # the column headers. 
     for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
+        protein.append(row[0])
 
-    return jsonify(json_data)
+    # get carbs for a diet
+    cursor2 = db.get_db().cursor()
+    query = 'SELECT totalcarbs AS y FROM Diet where dietID = "' + dietname + '"'
+    cursor2.execute(query)
+    carbs = []
+    theData = cursor2.fetchall()
+    for row in theData:
+        carbs.append(row[0])
+
+    #get fat for a diet
+    cursor3 = db.get_db().cursor()
+    query = 'SELECT totalfat AS y FROM Diet where dietID = "' + dietname + '"'
+    cursor3.execute(query)
+    fat = []
+    theData = cursor3.fetchall()
+    for row in theData:
+        fat.append(row[0])
+
+    return [{"x":"Total Protein", "y":protein[0]},
+            {"x":"Total Carbs", "y":carbs[0]},
+            {"x":"Total Fat", "y":fat[0]}]
 
 @diet.route('/dietbreakdown', methods=['GET'])
 def dbreakdown():
@@ -85,42 +95,6 @@ def dbreakdown():
 
     return jsonify(json_data)
 
-@diet.route('/totalprotein', methods=['GET'])
-def totalprotein():
-    cursor = db.get_db().cursor()
-    cursor.execute(
-        '''select totalprotien from Diet''')
-    column_headers = [x[0] for x in cursor.description]
-    json_data = []
-    theData = cursor.fetchall()
-    for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
-    return jsonify(json_data)
-
-@diet.route('/totalfat', methods=['GET'])
-def totalfat():
-    cursor = db.get_db().cursor()
-    cursor.execute(
-        '''select totalfat from Diet''')
-    column_headers = [x[0] for x in cursor.description]
-    json_data = []
-    theData = cursor.fetchall()
-    for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
-    return jsonify(json_data)
-
-@diet.route('/totalcarbs', methods=['GET'])
-def totalcarbs():
-    cursor = db.get_db().cursor()
-    cursor.execute(
-        '''select totalcarbs from Diet''')
-    column_headers = [x[0] for x in cursor.description]
-    json_data = []
-    theData = cursor.fetchall()
-    for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
-    return jsonify(json_data)
-
 @diet.route('/addToDiet', methods=['POST'])
 def add_to_diet():
      the_data = request.json
@@ -130,6 +104,17 @@ def add_to_diet():
      fat=the_data['totalfat']
      dietname=the_data['dietname']
      userID = the_data['targetUser']
+
+    #check to see if the userID is in the database
+     cursor = db.get_db().cursor()
+     cursor.execute( '''select userID from Users''')
+     json_data = []
+     theData = cursor.fetchall()
+     for row in theData:
+        json_data.append(row[0])
+     if userID not in json_data:
+         return "User not in Database"
+
 
      # make a new dietID
      cursor = db.get_db().cursor()
@@ -159,6 +144,18 @@ def updateDiet():
      newfat = the_data['updateFat']
      newprotein = the_data['updateProtein']
      dname = the_data['DietPicker']
+     
+     cursor = db.get_db().cursor()
+     cursor.execute(
+        '''select dietID from Diet''')
+     existingUsers = []
+     theData = cursor.fetchall()
+     for row in theData:
+        existingUsers.append(row[0])
+     if dname not in existingUsers:
+         return "User not in Database"
+     
+    
      query = 'UPDATE Diet set totalcarbs = "' + str(newcarbs) + '", totalfat = "' + str(newfat)
      query += '", totalprotien = "' + str(newprotein) + '" where dietname = "' + dname + '"'
      current_app.logger.info(query)
@@ -207,22 +204,3 @@ def deldiet():
         return "sucesses"
     except:
         return "not in database"
-
-
-
-
-
-"""
-
-TESTING
-
-
-
-
-
-
-
-
-
-
-"""

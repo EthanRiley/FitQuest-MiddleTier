@@ -14,18 +14,6 @@
     "tests": []
   },
   {
-    "_id": "22b6b0c0-a6b7-4ba9-b84d-5801147cb64a",
-    "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
-    "containerId": "",
-    "name": "TestGetDietEdge",
-    "url": "",
-    "method": "GET",
-    "sortNum": 20000,
-    "created": "2023-04-17T22:29:02.076Z",
-    "modified": "2023-04-17T22:29:02.076Z",
-    "headers": []
-  },
-  {
     "_id": "32cb6c5e-a705-4d29-b776-b38d18e002fa",
     "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
     "containerId": "",
@@ -49,11 +37,11 @@
     "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
     "containerId": "",
     "name": "TestDelete2",
-    "url": "localhost:8001/t/dropDiet",
+    "url": "localhost:8001/d/deletediet",
     "method": "DELETE",
     "sortNum": 40000,
     "created": "2023-04-17T22:30:13.760Z",
-    "modified": "2023-04-17T22:41:54.977Z",
+    "modified": "2023-04-18T22:36:43.184Z",
     "headers": [],
     "params": [],
     "body": {
@@ -68,13 +56,18 @@
     "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
     "containerId": "",
     "name": "TestAddDiet",
-    "url": "",
+    "url": "localhost:8001/d/addToDiet",
     "method": "POST",
     "sortNum": 50000,
     "created": "2023-04-17T22:30:34.168Z",
-    "modified": "2023-04-17T22:30:37.451Z",
+    "modified": "2023-04-18T22:38:03.388Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"totalcarbs\": \"200\",\n  \"totalfat\": \"67\",\n  \"totalprotein\": \"67\",\n  \"dietname\": \"DefaultDiet\",\n  \"targetUser\": \"1234\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -82,13 +75,18 @@
     "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
     "containerId": "",
     "name": "TestAddDietEdge",
-    "url": "",
+    "url": "localhost:8001/d/addToDiet",
     "method": "POST",
     "sortNum": 60000,
     "created": "2023-04-17T22:31:14.520Z",
-    "modified": "2023-04-17T22:31:20.184Z",
+    "modified": "2023-04-18T22:43:41.753Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"totalcarbs\": \"200\",\n  \"totalfat\": \"67\",\n  \"totalprotein\": \"67\",\n  \"dietname\": \"DefaultDiet\",\n  \"targetUser\": \"23456\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -96,13 +94,18 @@
     "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
     "containerId": "",
     "name": "testUpdateDiet",
-    "url": "",
+    "url": "localhost:8001/d/updateDiet",
     "method": "PUT",
     "sortNum": 70000,
     "created": "2023-04-17T22:32:10.603Z",
-    "modified": "2023-04-17T22:32:28.559Z",
+    "modified": "2023-04-18T23:09:36.755Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"updateCarbs\": \"100\",\n  \"DietPicker\": \"99090\",\n  \"updateFat\": \"100\",\n  \"updateProtein\": \"80\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -110,13 +113,18 @@
     "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
     "containerId": "",
     "name": "TestUpdateDietEdge",
-    "url": "",
+    "url": "localhost:8001/d/updateDiet",
     "method": "PUT",
     "sortNum": 80000,
     "created": "2023-04-17T22:32:55.145Z",
-    "modified": "2023-04-17T22:32:58.852Z",
+    "modified": "2023-04-18T23:42:43.652Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"updateCarbs\": \"100\",\n  \"DietPicker\": \"sdfgh\",\n  \"updateFat\": \"100\",\n  \"updateProtein\": \"80\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -125,12 +133,29 @@
     "containerId": "",
     "name": "testGraph",
     "url": "localhost:8001/d/graphDiet",
-    "method": "GET",
+    "method": "POST",
     "sortNum": 100000,
     "created": "2023-04-18T19:55:59.841Z",
-    "modified": "2023-04-18T20:00:15.854Z",
+    "modified": "2023-04-18T23:56:42.561Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\"diet_selector_graph\":\"99090\"\n}",
+      "form": []
+    },
     "tests": []
+  },
+  {
+    "_id": "8597673b-7a71-49d4-8df6-c40567669edc",
+    "colId": "29a4b7ef-5e7d-4277-bd30-3d030b8b5196",
+    "containerId": "",
+    "name": "testGetDietNames",
+    "url": "",
+    "method": "GET",
+    "sortNum": 110000,
+    "created": "2023-04-18T23:57:40.556Z",
+    "modified": "2023-04-18T23:57:40.556Z",
+    "headers": []
   }
 ]
