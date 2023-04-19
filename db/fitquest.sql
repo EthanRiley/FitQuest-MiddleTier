@@ -66,6 +66,7 @@ create table if not exists Diet (
 	on DELETE cascade
 );
 
+
 create table if not exists DietFoods (
 	foodID VARCHAR(10),
 	dietID VARCHAR(10),
@@ -84,6 +85,10 @@ create table if not exists DietFoods (
             REFERENCES Diet (dietID)
 );
 
+
+
+
+
 create table if not exists Weight (
 	userID VARCHAR(10),
 	weight INT,
@@ -94,10 +99,11 @@ create table if not exists Weight (
 create table if not exists Equipment (
 	machineid VARCHAR(10) NOT NULL,
 	datepurchased DATETIME DEFAULT CURRENT_TIMESTAMP(),
-	machinestatus VARCHAR(200),
+	machinestatus VARCHAR(500),
 	machineName VARCHAR(99),
 	PRIMARY KEY (machineid)
 );
+
 
 create table if not exists Staff (
 	startdate DATETIME DEFAULT CURRENT_TIMESTAMP(),
@@ -172,3 +178,6 @@ create table if not exists UserPrograms (
 	CONSTRAINT UP_Users_k FOREIGN KEY (userID) REFERENCES Users (userID),
 	CONSTRAINT OP_programs_programs FOREIGN KEY (programID) REFERENCES Programs (programID)
 );
+
+
+

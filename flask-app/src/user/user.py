@@ -53,8 +53,8 @@ def add_new_user():
         json_data = []
         theData = cursor.fetchall()
         for row in theData:
-            json_data.append(row[0])
-        userID = int(max(json_data)) + 1
+            json_data.append(int(row[0]))
+        userID = max(json_data) + 1
 
 
         trainerID = the_data['trainerID']
@@ -127,7 +127,6 @@ def get_max():
         exerciseID = checkin("exerciseID", "Exercises", exerciseID)
         if exerciseID == False:
             return "exerciseID Not in Database"
-
         # use cursor to query the database for a list of products
         cursor.execute(
             f'''SELECT max AS label, exerciseID AS value
@@ -148,7 +147,10 @@ def get_max():
         # the column headers. 
         for row in theData:
             json_data.append(dict(zip(column_headers, row)))
-
+        if json_data == []:
+            max=the_data["weightExept"]
+            json_data = [{'label': max,
+                          'value': exerciseID}]
         return jsonify(json_data)
     
     # route for adding a max to the database
@@ -169,7 +171,10 @@ def get_max():
         # create an empty dictionary object to use in 
         # putting column headers together with data
         json_data = []
-
+        if json_data == []:
+            max=the_data["weightExept"]
+            json_data = [{'label': max,
+                          'value': exerciseID}]
         # fetch all the data from the cursor
         theData = cursor.fetchall()
 
@@ -178,7 +183,7 @@ def get_max():
         for row in theData:
             json_data.append(dict(zip(column_headers, row)))
 
-        new_max = json_data[0]['max']
+        new_max = json_data[0]['label']
         if the_data['check1'] and the_data['check2'] and the_data['check3'] and the_data['check4'] and the_data['check5']:
             new_max = int(new_max) + 5
             increase = str("Congrats You are ready to move on")
@@ -249,7 +254,6 @@ def get_program_days():
     # create an empty dictionary object to use in 
     # putting column headers together with data
     json_data = []
-
     # fetch all the data from the cursor
     theData = cursor.fetchall()
 
@@ -257,7 +261,6 @@ def get_program_days():
     # the column headers. 
     for row in theData:
         json_data.append(dict(zip(column_headers, row)))
-
     return jsonify(json_data)
 
 @user.route('/program', methods=['GET'])

@@ -48,8 +48,8 @@ def hire_new_trainer():
      json_data = []
      theData = cursor.fetchall()
      for row in theData:
-        json_data.append(row[0])
-     trainerID = int(max(json_data)) + 1
+        json_data.append(int(row[0]))
+     trainerID = max(json_data) + 1
 
      # checks to see if a trainername already exists in the database
      cursor = db.get_db().cursor()
